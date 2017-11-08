@@ -27,28 +27,48 @@ function hasValidYear(date){
     }
 }
 function hasValidDay(date){
-    var mo30Days = ['01','02','03','04','05','06','07','08','09','10','11','12','13','14','15','16','17','18','19','20','21','22','23','24','25','26','27','28','29','30'];
-    var mo31Days = ['01','02','03','04','05','06','07','08','09','10','11','12','13','14','15','16','17','18','19','20','21','22','23','24','25','26','27','28','29','30','31'];
-    var feb28Days = ['01','02','03','04','05','06','07','08','09','10','11','12','13','14','15','16','17','18','19','20','21','22','23','24','25','26','27','28'];
-    var feb29Days = ['01','02','03','04','05','06','07','08','09','10','11','12','13','14','15','16','17','18','19','20','21','22','23','24','25','26','27','28','29'];
-    var year = date.slice(-2);
-    if((date.slice(0, 2) === '01') || (date.slice(0, 2) ==='03') || (date.slice(0, 2) === '05') || (date.slice(0, 2) ==='07')|| (date.slice(0, 2) === '08') || (date.slice(0, 2) === '10') || (date.slice(0, 2) === '12')) {
-        return mo31Days.includes(date.slice(3, 5));
+    if(monthHas31Days(date)) {
+        return dayInRange(date, 31);
     }
-    else if((date.slice(0, 2) === '04') || (date.slice(0, 2) === '06') || (date.slice(0, 2) === '09') || (date.slice(0, 2) === '11')){
-        return mo30Days.includes(date.slice(3, 5));
+    else if(monthHas30Days(date)){
+        return dayInRange(date, 30);
     }
-    else if((date.slice(0, 2) === '02') && (year % 4 === 0)){
-        return feb29Days.includes(date.slice(3, 5));
+    else if(monthHas29Days(date)){
+        return dayInRange(date, 29);
     }
-    else if((date.slice(0, 2) === '02') && (year % 4 != 0)){
-        return feb28Days.includes(date.slice(3, 5));
+    else if(monthHas28Days(date)){
+        return dayInRange(date, 28);;
     }
     else{
         return false;
     }
 }
-    
+function dayInRange(date, endDay){
+    var day = +date.slice(3, 5);
+    return day >= 1 && day <= endDay;
+}
+function monthHas31Days(date){
+    var months = ['01','03','05','07','08', '10', '12']
+    return isAmongMonths(date, months);
+}
+
+function monthHas30Days(date){
+    var months = ['04','06','09', '11'];
+    return isAmongMonths(date,months);
+}
+function monthHas29Days(date){
+    var year = +date.slice(-2);
+    return isAmongMonths(date,['02']) && (year % 4 === 0);
+}
+function monthHas28Days(date){
+    return isAmongMonths(date,['02']);
+}
+function isAmongMonths(date, months){
+    var month = date.slice(0, 2);
+    return months.includes(month);
+}
+
+
 // function alertValid(){
   //  if(isValidDate === true){
 //     alert("this is a valid date");
