@@ -30,6 +30,8 @@ describe('isValidDate', function() {
       expect(hasValidMonth('13-12-2014')).toBe(false); // has wrong digits
       expect(hasValidMonth('00-12-2014')).toBe(false); // has wrong digits
     });
+  });
+  describe('hasValidDelimeters', function(){  
     it('has delimeters "/", "-" or "." in index position 2 and 5 that are the same', function(){
       expect(hasValidDelimiters('03-12-09')).toBe(true); //has "-" for delimeter
       expect(hasValidDelimiters('03/12/09')).toBe(true); //has "/" for delimeter
@@ -42,7 +44,6 @@ describe('isValidDate', function() {
       expect(hasValidDelimiters('03\\12\\09')).toBe(false); //has invalid delimeter
 
       expect(hasValidDelimiters('03-12/09')).toBe(false); //has two different delimeters
-
     });
   });
   describe('hasValidYear', function(){
@@ -78,22 +79,18 @@ describe('isValidDate', function() {
       expect(hasValidDay('08-32-01')).toBe(false); // has 32 days in Aug
       expect(hasValidDay('10-32-01')).toBe(false); // has 32 days in Oct
       expect(hasValidDay('12-32-01')).toBe(false); // has 32 days in Dec
-      expect(hasValidDay('04-31-01')).toBe(false); // has 31 days in Apr
-      expect(hasValidDay('06-31-01')).toBe(false); // has 31 days in Jun
-      expect(hasValidDay('09-31-01')).toBe(false); // has 31 days in Sep
-      expect(hasValidDay('11-31-01')).toBe(false); // has 31 days in Nov
     });
-  it('has a two-digit day between 1-30 for 30-day months', function(){
-      expect(hasValidDay('04-30-2001')).toBe(true);
-      expect(hasValidDay('06-30-2012')).toBe(true);
-      expect(hasValidDay('09-30-2001')).toBe(true);
-      expect(hasValidDay('11-30-2012')).toBe(true);
-     
+    it('has a two-digit day between 1-30 for 30-day months', function(){
+        expect(hasValidDay('04-30-2001')).toBe(true);
+        expect(hasValidDay('06-30-2012')).toBe(true);
+        expect(hasValidDay('09-30-2001')).toBe(true);
+        expect(hasValidDay('11-30-2012')).toBe(true);
+      
 
-      expect(hasValidDay('04-31-2001')).toBe(false);
-      expect(hasValidDay('06-31-2012')).toBe(false);
-      expect(hasValidDay('09-31-2001')).toBe(false);
-      expect(hasValidDay('11-31-2012')).toBe(false);
+        expect(hasValidDay('04-31-2001')).toBe(false);
+        expect(hasValidDay('06-31-2012')).toBe(false);
+        expect(hasValidDay('09-31-2001')).toBe(false);
+        expect(hasValidDay('11-31-2012')).toBe(false);
     });
     it('has a two-digit day between 1-29 in Feb for leapyears', function(){
       expect(hasValidDay('02-29-2012')).toBe(true);
@@ -106,8 +103,5 @@ describe('isValidDate', function() {
       expect(hasValidDay('02-30-2011')).toBe(false);
       expect(hasValidDay('02-29-2011')).toBe(false);      
     });
-  //// it feb
-  // expect(hasValidDay('02-29-01')).toBe(false); // has 29 days in Feb non leap year
-  // ex pect(hasValidDay('02-30-12')).toBe(false); // has 30 days in Feb Leap year  
-});
+  }); 
 });

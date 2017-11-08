@@ -5,10 +5,16 @@ body {
     background-color: #5D6D7E;
     font-family: 'Open Sans Condensed', sans-serif;
 }
-/* The alert message box */
-.alert {
+/* The alert message boxes */
+.alertneg {
     padding: 20px;
-    background-color: #f44336; /* Red */
+    background-color: #f44336; 
+    color: white;
+    margin-bottom: 15px;
+}
+.alertpos {
+    padding: 20px;
+    background-color: #00ff00; 
     color: white;
     margin-bottom: 15px;
 }

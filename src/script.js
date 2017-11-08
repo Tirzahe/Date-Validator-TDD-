@@ -1,5 +1,7 @@
-function isValidDate(a, b) {
-   
+function isValidDate() {
+    var date = document.getElementById('validate').value;
+    var valid = hasValidLength(date) && hasValidDelimiters(date) && hasValidDay(date) && hasValidMonth(date)  && hasValidYear(date);
+        alertValidity(valid);
 }
 function hasValidLength(date){
     return date.length === 8 || date.length === 10;
@@ -51,7 +53,6 @@ function monthHas31Days(date){
     var months = ['01','03','05','07','08', '10', '12']
     return isAmongMonths(date, months);
 }
-
 function monthHas30Days(date){
     var months = ['04','06','09', '11'];
     return isAmongMonths(date,months);
@@ -69,14 +70,12 @@ function isAmongMonths(date, months){
 }
 
 
-// function alertValid(){
-  //  if(isValidDate === true){
-//     alert("this is a valid date");
-// }
 
-// function alertInvalid(){
-//     //else if false alert("this is an invalid date")
-// }
-// else {
-//         return alert("This is an invalid date, Please try again!")
-// }
+function alertValidity(isValidDate){
+    if(isValidDate === true){
+        return alert("Congratulations!! You\'ve entered a valid date!");
+    }
+    else {
+        return alert("Sorry!! You\'ve entered an invalid date!");
+    }
+}
